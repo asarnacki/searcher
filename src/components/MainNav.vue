@@ -4,10 +4,7 @@
       <div
         class="flex h-full flex-nowrap border-b border-solid border-brand-gray-1 px-8"
       >
-        <a href="/" class="flex h-full items-center text-xl">{{ company }}</a>
-        <h2 class="ml-8 flex h-full items-center">
-          Developed by {{ author.firstName }}.{{ author.lastName }}
-        </h2>
+        <a href="/" class="flex h-full items-center text-xl">{{ appName }}</a>
       </div>
     </div>
   </header>
@@ -18,11 +15,7 @@ export default {
   name: "MainNav",
   data() {
     return {
-      company: "G-Searcher",
-      author: {
-        firstName: "G",
-        lastName: "S",
-      },
+      appName: "G-Searcher",
     };
   },
 };
