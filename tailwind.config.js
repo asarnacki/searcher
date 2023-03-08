@@ -16,6 +16,9 @@ module.exports = {
          ex. sample class - text-black,
          custom color class text-brand-gray-1 */
       },
+      boxShadow: {
+        blue: "0 0 3px 3px #4285f4",
+      }
     },
   },
   plugins: [],
