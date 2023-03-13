@@ -26,7 +26,6 @@ describe("MainNav", () => {
       "Careers",
       "Contact",
     ]);
-
   });
 
   describe("when user log in", () => {
