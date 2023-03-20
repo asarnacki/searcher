@@ -4,8 +4,18 @@ import userEvent from "@testing-library/user-event";
 import MainNav from "@/components/MainNav.vue";
 
 describe("MainNav", () => {
+  const renderMainNav = () => {
+    render(MainNav, {
+      global: {
+        stubs: {
+          FontAwesomeIcon: true,
+        },
+      },
+    });
+  };
+
   it("displays MainNav component", () => {
-    render(MainNav);
+    renderMainNav();
     screen.debug();
     const appName = screen.getByText("G-Searcher");
     const navItem = screen.getByText("Contact");
@@ -14,7 +24,7 @@ describe("MainNav", () => {
   });
 
   it("displays menu items in nav", () => {
-    render(MainNav);
+    renderMainNav();
     const navMenuItems = screen.getAllByRole("listitem");
     const navMenuTexts = navMenuItems.map((item) => item.textContent);
     console.log(navMenuTexts);
@@ -30,7 +40,7 @@ describe("MainNav", () => {
 
   describe("when user log in", () => {
     it("displays user profile pic", async () => {
-      render(MainNav);
+      renderMainNav();
 
       let profileImage = screen.queryByRole("img", {
         name: /user profile image/i,
