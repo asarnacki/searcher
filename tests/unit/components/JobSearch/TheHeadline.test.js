@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/vue";
-import TheHeadline from "@/components/TheHeadline.vue";
+import TheHeadline from "@/components/JobSearch/TheHeadline.vue";
 import { vi } from "vitest";
 import { nextTick } from "vue";
 
