@@ -4,18 +4,24 @@
       <div
         class="flex h-full flex-nowrap border-b border-solid border-brand-gray-1 px-8"
       >
-        <a :href="url" class="flex h-full items-center text-xl">{{
-          appName
-        }}</a>
+        <router-link
+          :to="{ name: 'Home' }"
+          class="flex h-full items-center text-xl"
+          >G-Searcher
+        </router-link>
 
         <nav class="ml-12 h-full">
           <ul class="flex h-full list-none">
             <li
               v-for="item in menuItems"
-              :key="item"
+              :key="item.text"
               class="ml-9 h-full first:ml-0"
             >
-              <a href="" class="flex h-full items-center py-2.5">{{ item }}</a>
+              <router-link
+                :to="item.url"
+                class="flex h-full items-center py-2.5"
+                >{{ item.text }}</router-link
+              >
             </li>
           </ul>
         </nav>
@@ -44,9 +50,13 @@ export default {
   },
   data() {
     return {
-      appName: "G-Searcher",
-      url: "https://dolmar.pl/",
-      menuItems: ["Home", "Life at company", "Shop", "Careers", "Contact"],
+      menuItems: [
+        { text: "Home", url: "/" },
+        { text: "Life at company", url: "/" },
+        { text: "Shop", url: "/" },
+        { text: "Careers", url: "/jobs/results" },
+        { text: "Contact", url: "/" },
+      ],
       isLoggedIn: false,
     };
   },
