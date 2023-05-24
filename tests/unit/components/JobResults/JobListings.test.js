@@ -98,7 +98,6 @@ describe("JobListings", () => {
 
   describe("when user is on last page", () => {
     it("does not show link to next page", async () => {
-
       const queryParams = { page: "2" };
       const $route = createRoute(queryParams);
       renderJobListings($route);
