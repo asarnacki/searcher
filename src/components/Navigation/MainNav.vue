@@ -53,7 +53,7 @@ export default {
   data() {
     return {
       menuItems: [
-        { text: "Home", url: "/" },
+        { text: "Teams", url: "/teams" },
         { text: "Life at company", url: "/" },
         { text: "Shop", url: "/" },
         { text: "Careers", url: "/jobs/results" },
