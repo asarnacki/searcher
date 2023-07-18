@@ -45,7 +45,7 @@ describe("MainNav", () => {
     console.log(navMenuTexts);
 
     expect(navMenuTexts).toEqual([
-      "Home",
+      "Teams",
       "Life at company",
       "Shop",
       "Careers",
