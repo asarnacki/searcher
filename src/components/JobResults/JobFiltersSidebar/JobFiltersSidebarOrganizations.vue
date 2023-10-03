@@ -3,21 +3,20 @@
     <div class="mt-5">
       <fieldset>
         <ul class="flex flex-row flex-wrap">
-          <li class="h-8 w-1/2">
-            <input id="Test" type="checkbox" class="mr-3" />
-            <label for="Test">Test</label>
-          </li>
-          <li class="h-8 w-1/2">
-            <input id="Placeholder" type="checkbox" class="mr-3" />
-            <label for="Placeholder">Placeholder</label>
-          </li>
-          <li class="h-8 w-1/2">
-            <input id="Job111" type="checkbox" class="mr-3" />
-            <label for="Job111">Job111</label>
-          </li>
-          <li class="h-8 w-1/2">
-            <input id="VueTube" type="checkbox" class="mr-3" />
-            <label for="VueTube">VueTube</label>
+          <li
+            v-for="ogranization in UNIQUE_ORGANIZATIONS"
+            :key="ogranization"
+            class="h-8 w-1/2"
+          >
+            <input
+              :id="ogranization"
+              v-model="selectedOrganizations"
+              :value="ogranization"
+              type="checkbox"
+              class="mr-3"
+              @change="selectOrganization"
+            />
+            <label :for="ogranization">{{ ogranization }}</label>
           </li>
         </ul>
       </fieldset>
@@ -27,9 +26,27 @@
 
 <script>
 import CollapsibleAccordion from "@/components/Shared/CollapsibleAccordion.vue";
+import { mapActions, mapState } from "pinia";
+import { useJobsStore, UNIQUE_ORGANIZATIONS } from "@/stores/jobs";
+import { useUserStore, ADD_SELECTED_ORGANIZATIONS } from "@/stores/user";
 
 export default {
   name: "JobFiltersSidebarOrganizations",
   components: { CollapsibleAccordion },
+  data() {
+    return {
+      selectedOrganizations: [],
+    };
+  },
+  computed: {
+    ...mapState(useJobsStore, [UNIQUE_ORGANIZATIONS]),
+  },
+
+  methods: {
+    ...mapActions(useUserStore, [ADD_SELECTED_ORGANIZATIONS]),
+    selectOrganization() {
+      this.ADD_SELECTED_ORGANIZATIONS(this.selectedOrganizations);
+    },
+  },
 };
 </script>
