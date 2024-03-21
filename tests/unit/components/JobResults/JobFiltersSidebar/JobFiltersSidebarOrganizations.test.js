@@ -6,18 +6,17 @@ import JobFiltersOrganizations from "@/components/JobResults/JobFiltersSidebar/J
 import { useJobsStore } from "@/stores/jobs";
 import { useUserStore } from "@/stores/user";
 
+import { useRouter } from "vue-router";
+vi.mock("vue-router");
+
 describe("JobFiltersOrganizations", () => {
   const renderJobFilterSidebarOrganizations = () => {
     const pinia = createTestingPinia();
     const jobsStore = useJobsStore();
     const userStore = useUserStore();
-    const $router = { push: vi.fn() };
 
     render(JobFiltersOrganizations, {
       global: {
-        mocks: {
-          $router,
-        },
         plugins: [pinia],
         stubs: {
           FontAwesomeIcon: true,
@@ -25,7 +24,7 @@ describe("JobFiltersOrganizations", () => {
       },
     });
 
-    return { jobsStore, userStore, $router };
+    return { jobsStore, userStore };
   };
 
   it("renders unique list of organizations from jobs", async () => {
@@ -42,6 +41,7 @@ describe("JobFiltersOrganizations", () => {
 
   describe("when user click checkbox", () => {
     it("communicates that user selected checkbox for organization", async () => {
+      useRouter.mockReturnValue({ push: vi.fn() });
       const { jobsStore, userStore } = renderJobFilterSidebarOrganizations();
       jobsStore.UNIQUE_ORGANIZATIONS = new Set(["Google", "Amazon"]);
 
@@ -57,7 +57,9 @@ describe("JobFiltersOrganizations", () => {
     });
 
     it("navigates user to job results page to see filtered jobs", async () => {
-      const { jobsStore, $router } = renderJobFilterSidebarOrganizations();
+      const push = vi.fn();
+      useRouter.mockReturnValue({ push });
+      const { jobsStore } = renderJobFilterSidebarOrganizations();
       jobsStore.UNIQUE_ORGANIZATIONS = new Set(["Google"]);
 
       const button = screen.getByRole("button", { name: /organizations/i });
@@ -68,7 +70,7 @@ describe("JobFiltersOrganizations", () => {
       });
       await userEvent.click(googleCheckbox);
 
-      expect($router.push).toHaveBeenCalledWith({ name: "JobResults" });
+      expect(push).toHaveBeenCalledWith({ name: "JobResults" });
     });
   });
 });
