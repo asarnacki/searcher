@@ -1,11 +1,14 @@
 import { render, screen } from "@testing-library/vue";
 import { createTestingPinia } from "@pinia/testing";
 
+import type { Mock } from "vitest";
 import SubNav from "@/components/Navigation/SubNav.vue";
 import { useJobsStore } from "@/stores/jobs";
 
 import { useRoute } from "vue-router";
 vi.mock("vue-router");
+
+const useRouteMock = useRoute as Mock;
 
 describe("SubNav", () => {
   const renderSubnav = () => {
@@ -24,10 +27,11 @@ describe("SubNav", () => {
   };
   describe("when user is on jobs page", () => {
     it("displays job count", async () => {
-      useRoute.mockReturnValue({ name: "JobResults" });
+      useRouteMock.mockReturnValue({ name: "JobResults" });
 
       const { jobsStore } = renderSubnav();
       const numberOfJobs = 16;
+      //@ts-expect-error
       jobsStore.FILTERED_JOBS = Array(numberOfJobs).fill({});
 
       const jobCount = await screen.findByText(numberOfJobs);
@@ -36,10 +40,11 @@ describe("SubNav", () => {
   });
   describe("when user is on jobs page", () => {
     it("does NOT display job count", () => {
-      useRoute.mockReturnValue({ name: "Test" });
+      useRouteMock.mockReturnValue({ name: "Test" });
 
       const { jobsStore } = renderSubnav();
       const numberOfJobs = 16;
+      //@ts-expect-error
       jobsStore.FILTERED_JOBS = Array(numberOfJobs).fill({});
 
       const jobCount = screen.queryByText(numberOfJobs);

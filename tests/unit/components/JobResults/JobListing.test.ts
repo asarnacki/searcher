@@ -2,17 +2,11 @@ import { render, screen } from "@testing-library/vue";
 import { RouterLinkStub } from "@vue/test-utils";
 
 import JobListing from "@/components/JobResults/JobListing.vue";
+import { createJob } from "tests/utils/createJob";
+import type { Job } from "@/api/types";
 
 describe("JobListing", () => {
-  const createJobProps = (jobProps = {}) => ({
-    title: "Kotlin Coder",
-    organization: "VueTube",
-    locations: ["Warsaw"],
-    minimumQualifications: ["Code"],
-    ...jobProps,
-  });
-
-  const renderJobListing = (jobProps) => {
+  const renderJobListing = (job: Job) => {
     render(JobListing, {
       global: {
         stubs: {
@@ -21,26 +15,26 @@ describe("JobListing", () => {
       },
       props: {
         job: {
-          ...jobProps,
+          ...job,
         },
       },
     });
   };
 
   it("renders job title", () => {
-    const jobProps = createJobProps({ title: "Go Specialist" });
+    const jobProps = createJob({ title: "Go Specialist" });
     renderJobListing(jobProps);
     expect(screen.getByText("Go Specialist")).toBeInTheDocument();
   });
 
   it("renders job organization", () => {
-    const jobProps = createJobProps({ organization: "Vue and a Half Man" });
+    const jobProps = createJob({ organization: "Vue and a Half Man" });
     renderJobListing(jobProps);
     expect(screen.getByText("Vue and a Half Man")).toBeInTheDocument();
   });
 
   it("renders job locations", () => {
-    const jobProps = createJobProps({
+    const jobProps = createJob({
       locations: ["Kraków", "Wrocław"],
     });
     renderJobListing(jobProps);
@@ -49,7 +43,7 @@ describe("JobListing", () => {
   });
 
   it("renders job qualifications", () => {
-    const jobProps = createJobProps({
+    const jobProps = createJob({
       minimumQualifications: [
         "Incubate one-to-one applications, re-contextualize killer applications, and implement collaborative systems",
         "Incubate collaborative functionalities, aggregate holistic e-tailers, and matrix rich experiences",
