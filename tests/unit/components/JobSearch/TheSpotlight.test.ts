@@ -1,12 +1,14 @@
+import type { Mock } from "vitest";
 import axios from "axios";
 import TheSpotlight from "@/components/JobSearch/TheSpotlight.vue";
 import { render, screen } from "@testing-library/vue";
 
 vi.mock("axios");
+const axiosGetMock = axios.get as Mock;
 
 describe("TheSpotlight", () => {
   const mockSpotlightResponse = (spotlight = {}) => {
-    axios.get.mockResolvedValue({
+    axiosGetMock.mockResolvedValue({
       data: [
         {
           id: 1,

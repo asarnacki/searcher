@@ -1,6 +1,6 @@
 <template>
   <main class="flex h-screen flex-col">
-    <section class="pt-10 pb-20">
+    <section class="pb-20 pt-10">
       <div class="grid grid-cols-12">
         <div class="col-span-1 col-start-1"></div>
 
@@ -47,16 +47,8 @@
   </main>
 </template>
 
-<script>
+<script lang="ts" setup>
 import TheHeadline from "@/components/JobSearch/TheHeadline.vue";
 import JobSearchForm from "@/components/JobSearch/JobSearchForm.vue";
 import TheSpotlight from "@/components/JobSearch/TheSpotlight.vue";
-export default {
-  name: "TheHero",
-  components: {
-    TheHeadline,
-    JobSearchForm,
-    TheSpotlight,
-  },
-};
 </script>

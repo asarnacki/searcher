@@ -1,3 +1,4 @@
+import type { Mock } from "vitest";
 import { render, screen } from "@testing-library/vue";
 import userEvent from "@testing-library/user-event";
 import { RouterLinkStub } from "@vue/test-utils";
@@ -8,9 +9,11 @@ import MainNav from "@/components/Navigation/MainNav.vue";
 import { useRoute } from "vue-router";
 vi.mock("vue-router");
 
+const useRouteMock = useRoute as Mock;
+
 describe("MainNav", () => {
   const renderMainNav = () => {
-    useRoute.mockReturnValue({ name: "Home" });
+    useRouteMock.mockReturnValue({ name: "Home" });
     const pinia = createTestingPinia({
       stubActions: false,
     });
@@ -61,7 +64,7 @@ describe("MainNav", () => {
 
       const loginButton = screen.queryByRole("button", {
         name: /sign in/i,
-      });
+      }) as HTMLElement;
       await userEvent.click(loginButton);
 
       profileImage = screen.getByRole("img", {
