@@ -11,6 +11,9 @@
 
         <div class="flex flex-row align-middle">
           <div class="mr-5">
+            <span class="font-semibold">{{ job.jobType }}</span>
+          </div>
+          <div class="mr-5">
             <span>{{ job.organization }}</span>
           </div>
 
