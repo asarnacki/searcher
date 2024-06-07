@@ -1,6 +1,6 @@
 <template>
   <job-filters-sidebar-checkbox-group
-    :unique-values="UNIQUE_JOB_TYPES"
+    :unique-values="UNIQUE_DEGREES"
     :action="userStore.ADD_SELECTED_DEGREES"
   />
 </template>
@@ -14,5 +14,5 @@ import { useUserStore } from "@/stores/user";
 const userStore = useUserStore();
 const degreesStore = useDegreesStore();
 
-const UNIQUE_JOB_TYPES = computed(() => degreesStore.UNIQUE_DEGREES);
+const UNIQUE_DEGREES = computed(() => degreesStore.UNIQUE_DEGREES);
 </script>
