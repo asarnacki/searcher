@@ -23,14 +23,14 @@ describe("state", () => {
   it("stores degrees that the user would like to filters jobs by", () => {
     const store = useUserStore();
     expect(store.selectedDegrees).toEqual([]);
-  })
+  });
 });
 
 describe("actions", () => {
   describe("loginUser", () => {
     it("log user in", () => {
       const store = useUserStore();
-      store.loginUser();
+      store.LOGIN_USER();
       expect(store.isLoggedIn).toBe(true);
     });
   });
@@ -54,6 +54,19 @@ describe("actions", () => {
     it("updates degrees types that user choose to filter degrees by", () => {
       const store = useUserStore();
       store.ADD_SELECTED_DEGREES(["Master's", "Bachelor's"]);
+    });
+  });
+  describe("CLEAR_USER_JOB_FILTER_SELECTIONS", () => {
+    it("removes job filters that has been chosen", () => {
+      const store = useUserStore();
+      store.selectedDegrees = ["Sth degree"];
+      store.selectedOrganizations = ["Sth organization"];
+      store.selectedJobTypes = ["Sth job type"];
+      store.CLEAR_USER_JOB_FILTER_SELECTIONS();
+
+      expect(store.selectedDegrees).toEqual([]);
+      expect(store.selectedOrganizations).toEqual([]);
+      expect(store.selectedJobTypes).toEqual([]);
     });
   });
 });
