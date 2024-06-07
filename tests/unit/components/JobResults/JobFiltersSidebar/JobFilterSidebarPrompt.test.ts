@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { createTestingPinia } from "@pinia/testing";
 import { useUserStore } from "@/stores/user";
 
-import JobFiltersSidebarPrompt from "@/components/JobResults/JobFiltersSidebar/JobFiltersSIdebarPrompt.vue";
+import JobFiltersSidebarPrompt from "@/components/JobResults/JobFiltersSidebar/JobFiltersSidebarPrompt.vue";
 
 describe("JobFiltersSIdebarPrompt", () => {
   describe("when user clicks Clear filters", () => {
