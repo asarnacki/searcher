@@ -10,7 +10,7 @@
         </div>
       </div>
 
-      <collapsible-accordion header="Degree" />
+      <job-filters-sidebar-checkbox-group header="Degree's" :unique-values="UNIQUE_DEGREES" :action="userStore.ADD_SELECTED_DEGREES"/>
 
       <job-filters-sidebar-checkbox-group
         header="Job Types"
@@ -34,11 +34,15 @@ import CollapsibleAccordion from "@/components/Shared/CollapsibleAccordion.vue";
 import JobFiltersSidebarCheckboxGroup from "@/components/JobResults/JobFiltersSidebar/JobFiltersSidebarCheckboxGroup.vue";
 
 import { useJobsStore } from "@/stores/jobs";
-import { useUserStore } from "@/stores/user";
+import { ADD_SELECTED_DEGREES, useUserStore } from "@/stores/user";
+import { useDegreesStore } from "@/stores/degrees";
 
 const jobsStore = useJobsStore();
 const userStore = useUserStore();
+const degreesStore = useDegreesStore();
 
 const UNIQUE_ORGANIZATIONS = computed(() => jobsStore.UNIQUE_ORGANIZATIONS);
 const UNIQUE_JOB_TYPES = computed(() => jobsStore.UNIQUE_JOB_TYPES);
+const UNIQUE_DEGREES = computed(() => degreesStore.UNIQUE_DEGREES);
+
 </script>
