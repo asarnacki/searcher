@@ -24,6 +24,11 @@ describe("state", () => {
     const store = useUserStore();
     expect(store.selectedDegrees).toEqual([]);
   });
+
+  it("stores users search term for skill and qualifications", () => {
+    const store = useUserStore();
+    expect(store.skillsSearchTerm).toBe("");
+  });
 });
 
 describe("actions", () => {
@@ -56,17 +61,29 @@ describe("actions", () => {
       store.ADD_SELECTED_DEGREES(["Master's", "Bachelor's"]);
     });
   });
+
+  describe("UPDATE_SKILLS_SEARCH_TERM", () => {
+    it("receives search term for skill", () => {
+      const store = useUserStore();
+      store.skillsSearchTerm = "";
+      store.UPDATE_SKILLS_SEARCH_TERM("Vue");
+      expect(store.skillsSearchTerm).toBe("Vue");
+    });
+  });
+
   describe("CLEAR_USER_JOB_FILTER_SELECTIONS", () => {
     it("removes job filters that has been chosen", () => {
       const store = useUserStore();
       store.selectedDegrees = ["Sth degree"];
       store.selectedOrganizations = ["Sth organization"];
       store.selectedJobTypes = ["Sth job type"];
+      store.skillsSearchTerm = "Vue dev";
       store.CLEAR_USER_JOB_FILTER_SELECTIONS();
 
       expect(store.selectedDegrees).toEqual([]);
       expect(store.selectedOrganizations).toEqual([]);
       expect(store.selectedJobTypes).toEqual([]);
+      expect(store.skillsSearchTerm).toBe("");
     });
   });
 });
