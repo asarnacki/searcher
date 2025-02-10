@@ -8,7 +8,7 @@
     "preview": "vite preview",
     "test:unit": "vitest --environment jsdom --coverage",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "backend": "json-server --watch db.json"
+    "backend": "node server.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
