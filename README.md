@@ -1,5 +1,8 @@
 # Searcher
 
+Available at:
+https://asarnacki.github.io/searcher/
+
 **Searcher** is a Vue.js application designed for job searching and data filtering. Built as a learning project, it demonstrates key web development concepts such as HTTP GET requests to fetch job listings from a JSONBin.io database, state management with Pinia, and a local Node.js backend for testing.
 
 ## Table of Contents
