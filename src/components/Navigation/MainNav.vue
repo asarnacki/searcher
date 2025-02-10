@@ -46,10 +46,7 @@ import SubNav from "@/components/Navigation/SubNav.vue";
 
 const menuItems = ref([
   { text: "Teams", url: "/teams" },
-  { text: "Life at company", url: "/" },
-  { text: "Shop", url: "/" },
   { text: "Careers", url: "/jobs/results" },
-  { text: "Contact", url: "/" },
 ]);
 
 const userStore = useUserStore();

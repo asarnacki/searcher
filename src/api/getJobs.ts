@@ -1,12 +1,11 @@
-import axios from "axios";
+import apiClient from "@/api/axiosConfig";
 
-import type { Job } from "@/api/types";
+import type { ApiResponse } from "@/api/types";
 
 const getJobs = async () => {
-  const baseUrl = import.meta.env.VITE_APP_API_URL;
-  const url = `${baseUrl}/jobs`;
-  const response = await axios.get<Job[]>(url);
-  return response.data;
+  const response = await apiClient.get<ApiResponse>("/");
+
+  return response.data.record.jobs;
 };
 
 export default getJobs;

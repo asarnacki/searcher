@@ -14,3 +14,18 @@ export interface Degree {
   id: number;
   degree: string;
 }
+
+export interface Spotlight {
+  id: number;
+  img: string;
+  title: string;
+  description: string;
+}
+
+export interface ApiResponse {
+  record: {
+    degrees: Degree[];
+    jobs: Job[];
+    spotlights: Spotlight[];
+  };
+}
